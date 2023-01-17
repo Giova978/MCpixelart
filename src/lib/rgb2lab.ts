@@ -45,9 +45,6 @@ export function rgb2lab(rgb: number[]) {
     return [116 * y - 16, 500 * (x - y), 200 * (y - z)];
 }
 
-// calculate the perceptual distance between colors in CIELAB
-// https://github.com/THEjoezack/ColorMine/blob/master/ColorMine/ColorSpaces/Comparisons/Cie94Comparison.cs
-
 export function deltaE(labA: number[], labB: number[]) {
     // http://www.brucelindbloom.com/index.html?Eqn_DeltaE_CIE94.html
     const sqrt = Math.sqrt;
