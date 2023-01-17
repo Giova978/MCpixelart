@@ -14,6 +14,7 @@
 	let showResultModal = false
 	let pixelsToAverage: number[] = [16, 16]
 	let downscaleFactor = 1
+	let image = new Image()
 	
 	// The bigger the smaller and less detailed the output image
 	$: averagingSquareWidth = pixelsToAverage[0]
@@ -30,7 +31,6 @@
 		fileName = file.name
 		uploadedImageUrl = fileUrl
 
-		let image = new Image()
 		image.src = fileUrl
 
 		image.onload = () => {
@@ -38,8 +38,6 @@
 			if (downscaleFactor < 1) {
 				downscaleFactor = 1
 			}	
-
-			const ctx = previewCanvas.getContext('2d')!
 
 			previewCanvas.width = image.width / downscaleFactor
 			previewCanvas.height = image.height / downscaleFactor
@@ -56,21 +54,15 @@
 	}
 
 	function processImage() {
-		let image = new Image()
-		image.src = fileUrl
-
-		image.onload = () => {
+		const ctx = uploadedImage.getContext('2d')!
+		uploadedImage.width = image.width
+		uploadedImage.height = image.height
 		
-			const ctx = uploadedImage.getContext('2d')!
-			uploadedImage.width = image.width
-			uploadedImage.height = image.height
-			
-			ctx.drawImage(image, 0, 0)
-			const imageData = ctx.getImageData(0, 0, image.width, image.height)
+		ctx.drawImage(image, 0, 0)
+		const imageData = ctx.getImageData(0, 0, image.width, image.height)
 
-			newImageBlockNames = imageToBlocks(imageData, averagingSquareWidth, averagingSquareHeight)
-			showResultModal = true
-		}
+		newImageBlockNames = imageToBlocks(imageData, averagingSquareWidth, averagingSquareHeight)
+		showResultModal = true
 	}
 	
 	
