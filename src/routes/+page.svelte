@@ -15,7 +15,6 @@
 	let pixelsToAverage: number[] = [16, 16]
 	let downscaleFactor = 1
 	
-	// How big should the averaging square be
 	// The bigger the smaller and less detailed the output image
 	$: averagingSquareWidth = pixelsToAverage[0]
 	$: averagingSquareHeight = pixelsToAverage[1]
@@ -23,8 +22,9 @@
 	// Matrix containing the blocks that should replace the measured squared in the original image
 	let newImageBlockNames: string[][] = []
 
-	function onFileSelected(event: Event) {
-		// @ts-expect-error
+	function onFileSelected(event: Event & { target: { files: FileList}}) {
+		if (!event.target) return
+
 		const file = event.target.files[0]
 		fileUrl = URL.createObjectURL(file)
 		fileName = file.name
