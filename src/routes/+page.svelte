@@ -1,9 +1,7 @@
 <script lang="ts">
-	import resizeImage from 'resize-image-data';	
-	import {rgb2lab, deltaE} from "$lib/rgb2lab";
 	import { onMount } from "svelte"
 	import Modal from "$lib/Modal.svelte";
-	import { findClosestColor, getAverageColor, groupPixels, imageToBlocks, imageToBlocks2 } from '$lib/imageProcessing';
+	import { imageToBlocks } from '$lib/imageProcessing';
 
 	let previewCanvas: HTMLCanvasElement
 	let uploadedImage: HTMLCanvasElement;
@@ -46,7 +44,6 @@
 			previewCanvas.width = image.width / downscaleFactor
 			previewCanvas.height = image.height / downscaleFactor
 
-			// ctx.drawImage(image, 0, 0, image.width / downscaleFactor, image.height / downscaleFactor)
 			renderAveragingSquare()
 		}
 	}
@@ -68,69 +65,10 @@
 			uploadedImage.width = image.width
 			uploadedImage.height = image.height
 			
-			// ctx.drawImage(image, 0, 0)
-			// const imageData = ctx.getImageData(0,0, image.width, image.height) 
-
-			// @ts-ignore
-			// image = resizeImage(imageData, 128, (image.height * (128 / image.width)), "nearest-neighbor")
-			// uploadedImage.width = image.width
-			// uploadedImage.height = image.height
-
 			ctx.drawImage(image, 0, 0)
 			const imageData = ctx.getImageData(0, 0, image.width, image.height)
-			// console.log(groupPixels(ctx.getImageData(0,0,image.width, image.height), averagingSquareWidth, averagingSquareHeight));
-			// newImageBlockNames = imageToBlocks2(ctx.getImageData(0,0,image.width, image.height), averagingSquareWidth, averagingSquareHeight)
-			// showResultModal = true
 
 			newImageBlockNames = imageToBlocks(imageData, averagingSquareWidth, averagingSquareHeight)
-			showResultModal = true
-			return
-
-			// How many time we have move our averaging square in the x and y coordinates
-			const xIterations = Math.ceil(image.width / averagingSquareWidth)
-			const yIterations = Math.ceil(image.height / averagingSquareHeight)
-			
-			let timeAvg = 0
-
-			// const xIterations = image.width//Math.ceil(image.width / averagingSquareWidth)
-			// const yIterations = image.height//Math.ceil(image.height / averagingSquareHeight)
-
-			const cache = new Map<string, string>()
-
-			// Reset items from previous conversions without reassigment
-			newImageBlockNames.length = 0
-			for (let yOffsetFactor = 0; yOffsetFactor < yIterations; yOffsetFactor++) {
-				let height = image.height % averagingSquareHeight
-				height = yOffsetFactor === yIterations - 1 && height > 0 ? height : averagingSquareHeight
-
-				// First array representing the y lines in the image
-				newImageBlockNames[yOffsetFactor] = []
-
-				for (let xOffsetFactor = 0; xOffsetFactor < xIterations; xOffsetFactor++) {
-					let width = image.width % averagingSquareWidth 
-					width = xOffsetFactor === xIterations - 1 && width > 0 ? width : averagingSquareWidth
-					
-					// @ts-ignore
-					// const [r, g, b, a] = image.data.slice(xOffsetFactor*4, 4+(4*xOffsetFactor))
-					// const avgColor = [r, g, b]
-					const t0 = performance.now()
-					const data = ctx.getImageData(averagingSquareWidth*xOffsetFactor, averagingSquareHeight*yOffsetFactor, width, height).data 
-					const t1 = performance.now()
-					timeAvg += t1 - t0
-					const avgColor = getAverageColor(data)
-
-					let closestColoredBlock;
-					if (cache.has(avgColor.toString())) {
-						closestColoredBlock = cache.get(avgColor.toString())!
-					} else {
-						closestColoredBlock = findClosestColor(avgColor)
-					}
-
-					newImageBlockNames[yOffsetFactor].push(closestColoredBlock)
-				}
-			}
-			
-			console.log(timeAvg / (xIterations * yIterations))
 			showResultModal = true
 		}
 	}
@@ -149,7 +87,6 @@
 <main>
 	<article>
 		<canvas bind:this={previewCanvas} class="preview" style="background-image: url({fileUrl});"></canvas>
-		<!-- <canvas src="{uploadedImageUrl}" alt="">	 -->
 
 		<label class="file-upload">
 			<input type="file" on:change={onFileSelected} accept=".jpeg, .png"/>
