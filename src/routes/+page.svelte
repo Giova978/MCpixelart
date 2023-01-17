@@ -23,10 +23,13 @@
 	// Matrix containing the blocks that should replace the measured squared in the original image
 	let newImageBlockNames: string[][] = []
 
-	function onFileSelected(event: Event & { target: { files: FileList}}) {
-		if (!event.target) return
+	function onFileSelected(event: Event) {
+		if (!event.target) return;
+		const target = event.target as HTMLInputElement
+		
+		if (!target.files) return;
 
-		const file = event.target.files[0]
+		const file = target.files[0]
 		fileUrl = URL.createObjectURL(file)
 		fileName = file.name
 		uploadedImageUrl = fileUrl
