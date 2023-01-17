@@ -2,7 +2,7 @@
 // found on www.easyrgb.com
 
 export function lab2rgb(lab: number[]) {
-    var y = (lab[0] + 16) / 116,
+    let y = (lab[0] + 16) / 116,
         x = lab[1] / 500 + y,
         z = y - lab[2] / 200,
         r,
