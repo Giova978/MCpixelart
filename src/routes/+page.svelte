@@ -14,8 +14,8 @@
 	let showResultModal = false
 	let pixelsToAverage: number[] = [16, 16]
 	let downscaleFactor = 1
-	let image = new Image()
-	
+	let image: HTMLImageElement	
+
 	// The bigger the smaller and less detailed the output image
 	$: averagingSquareWidth = pixelsToAverage[0]
 	$: averagingSquareHeight = pixelsToAverage[1]
@@ -71,6 +71,7 @@
 	
 	onMount(() => {
 		ctx = previewCanvas.getContext('2d')!
+		image = new Image()
 	})
 
 </script>
