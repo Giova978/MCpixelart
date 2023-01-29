@@ -148,7 +148,7 @@ nav {
 }
 
 main {
-	margin-top: 2rem;
+	margin-top: 1.5rem;
 }
 
 .disabled {
@@ -253,7 +253,7 @@ article {
 	button.convert {
 		width: 120px;
 		height: 40px;
-		margin-top: 2rem;
+		margin-top: 1.2rem;
 		font-size: 1.5rem;
 		transition: transform .3s ease;
 
