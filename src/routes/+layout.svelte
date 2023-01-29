@@ -10,8 +10,9 @@
 footer {
 	box-sizing: border-box;
 	width: 100%;
-	position: absolute;
+	position: relative;
 	bottom: 0;
+	margin-top: 1rem;
 	padding-bottom: 1rem;
 	padding-left: 1rem;
 	
@@ -21,6 +22,11 @@ footer {
 	
 	a {
 		color: rgb(21, 113, 69);
+	}
+	
+	@media screen and (min-height: 950px) {
+		margin-top: 0;
+		position: absolute;
 	}
 }
 </style>
