@@ -1,10 +1,10 @@
 import { deltaE, rgb2lab } from "./rgb2lab";
 import blocksColor from "$lib/data/avgColorPerBlock.json";
 
-// Since Uint8ClampedArray from image.data is flat we need to offset our slice by 4 to account for R G B A values
+// Since Uint8ClampedArray from image.data is flat we need to offset our slice by 4 to account for R G B A individual pixel values
 const PIXELS_OFFSET = 4;
 
-export function imageToBlocks(image: ImageData, averagingSquareWidth: number, averagingSquareHeight: number) {
+export async function imageToBlocks(image: ImageData, averagingSquareWidth: number, averagingSquareHeight: number) {
     const xIterations = Math.ceil(image.width / averagingSquareWidth);
     const yIterations = Math.ceil(image.height / averagingSquareHeight);
 
@@ -18,29 +18,39 @@ export function imageToBlocks(image: ImageData, averagingSquareWidth: number, av
         const squareHeight = yOffset === yIterations - 1 && leftoverHeight > 0 ? leftoverHeight : averagingSquareHeight;
 
         blocks[yOffset] = [];
+        const pixelsInAreasPromises = [];
         for (let xOffset = 0; xOffset < xIterations; xOffset++) {
             const squareWidth = xOffset === xIterations - 1 && leftoverWidth > 0 ? leftoverWidth : averagingSquareWidth;
-            const pixelsInSquare = [];
+            pixelsInAreasPromises.push(getPixelsInAreaAverageColor(image, yOffset, xOffset, averagingSquareHeight, averagingSquareWidth, squareHeight, squareWidth))
 
-            for (let y = yOffset * averagingSquareHeight; y < yOffset * averagingSquareHeight + squareHeight; y++) {
-                const cursor = PIXELS_OFFSET * (y * image.width + xOffset * averagingSquareWidth);
-                const line = image.data.slice(cursor, cursor + squareWidth * PIXELS_OFFSET);
-                pixelsInSquare.push(line);
-            }
+        }
 
-            const avgColor = getAverageColor(pixelsInSquare);
-
+        const areasAverageColor = await Promise.all(pixelsInAreasPromises)
+        blocks[yOffset] = areasAverageColor.reduce((acc, avgColor) => {
             let closestColoredBlock = colorAverageToBlockCache.get(avgColor.toString()) ?? findClosestColor(avgColor);
             if (!closestColoredBlock) {
                 closestColoredBlock = findClosestColor(avgColor);
                 colorAverageToBlockCache.set(avgColor.toString(), closestColoredBlock);
             }
 
-            blocks[yOffset].push(closestColoredBlock);
-        }
+            acc.push(closestColoredBlock)
+            return acc
+        }, [] as string[])
     }
 
     return blocks;
+}
+
+async function getPixelsInAreaAverageColor(image: ImageData, yOffset: number, xOffset: number, averagingSquareHeight: number, averagingSquareWidth: number, squareHeight: number, squareWidth: number) {
+    const startPosition = yOffset * averagingSquareHeight
+    const pixels: Uint8ClampedArray[] = []
+    for (let y = startPosition; y < startPosition + squareHeight; y++) {
+        const cursor = PIXELS_OFFSET * (y * image.width + xOffset * averagingSquareWidth);
+        const line = image.data.slice(cursor, cursor + squareWidth * PIXELS_OFFSET)
+        pixels.push(line)
+    }
+
+    return getAverageColor(pixels)
 }
 
 function getAverageColor(data: Uint8ClampedArray[]) {

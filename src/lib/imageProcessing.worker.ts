@@ -6,9 +6,12 @@ interface MessageData {
     averagingSquareHeight: number;
 }
 
-onmessage = ({ data }) => {
+onmessage = async ({ data }) => {
     const { imageData, averagingSquareWidth, averagingSquareHeight } = data as MessageData;
-    postMessage(imageToBlocks(imageData, averagingSquareWidth, averagingSquareHeight));
+    console.time("process")
+    const result = await imageToBlocks(imageData, averagingSquareWidth, averagingSquareHeight)
+    console.timeEnd("process")
+    postMessage(result);
 };
 
 export { };
