@@ -11,4 +11,4 @@ onmessage = ({ data }) => {
     postMessage(imageToBlocks(imageData, averagingSquareWidth, averagingSquareHeight));
 };
 
-export {};
+export { };
