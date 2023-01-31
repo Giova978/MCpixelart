@@ -24,7 +24,7 @@ footer {
 		color: rgb(21, 113, 69);
 	}
 	
-	@media screen and (min-height: 950px) {
+	@media screen and (min-height: 850px) {
 		margin-top: 0;
 		position: absolute;
 	}
