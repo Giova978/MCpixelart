@@ -1,9 +1,6 @@
 import { deltaE, rgb2lab } from "./rgb2lab";
 import blocksColor from "$lib/data/avgColorPerBlock.json";
 
-// Since Uint8ClampedArray from image.data is flat we need to offset our slice by 4 to account for R G B A individual pixel values
-const PIXELS_OFFSET = 4;
-
 export async function imageToBlocks(image: ImageData, averagingSquareWidth: number, averagingSquareHeight: number) {
     const xIterations = Math.ceil(image.width / averagingSquareWidth);
     const yIterations = Math.ceil(image.height / averagingSquareHeight);
@@ -42,6 +39,9 @@ export async function imageToBlocks(image: ImageData, averagingSquareWidth: numb
 }
 
 async function getPixelsInAreaAverageColor(image: ImageData, yOffset: number, xOffset: number, averagingSquareHeight: number, averagingSquareWidth: number, squareHeight: number, squareWidth: number) {
+    // Since Uint8ClampedArray from image.data is flat we need to offset our slice by 4 to account for R G B A individual pixel values
+    const PIXELS_OFFSET = 4;
+
     const startPosition = yOffset * averagingSquareHeight
     const pixels: Uint8ClampedArray[] = []
     for (let y = startPosition; y < startPosition + squareHeight; y++) {
