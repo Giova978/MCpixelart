@@ -7,6 +7,9 @@
     let spriteSheet: HTMLImageElement;
     let ctx: CanvasRenderingContext2D;
     let worker: Worker;
+    let image: HTMLImageElement;
+
+    const allowImagesFiles = ["image/png", "image/jpeg"];
 
     let fileUrl = "";
     let fileName = "No file selected";
@@ -15,8 +18,8 @@
     let pixelsToAverage: number[] = [16, 16];
     let downscaleFactor = 1;
     let sentToWorker = false;
-    let image: HTMLImageElement;
     let imageSize = [0, 0];
+    let dragging = false;
 
     // The bigger the smaller and less detailed the output image
     $: averagingSquareWidth = pixelsToAverage[0];
@@ -30,8 +33,14 @@
         const target = event.target as HTMLInputElement;
 
         if (!target.files) return;
+        if (target.files.length > 1) return;
+        if (allowImagesFiles.indexOf(target.files[0].type) < 0) return;
 
         const file = target.files[0];
+        uploadImage(file);
+    }
+
+    function uploadImage(file: File) {
         fileUrl = URL.createObjectURL(file);
         fileName = file.name;
         uploadedImageUrl = fileUrl;
@@ -99,9 +108,31 @@
                 break;
         }
 
-        console.log([newWidth / image.width, newHeight / image.height]);
-        pixelsToAverage = [Math.ceil((image.width / newWidth) * 16), Math.ceil((image.height / newHeight) * 16)];
+        pixelsToAverage = [
+            Math.ceil((image.width / newWidth) * BLOCK_TEXTURE_SIZE),
+            Math.ceil((image.height / newHeight) * BLOCK_TEXTURE_SIZE),
+        ];
+
         imageSize = [newWidth, newHeight];
+    }
+
+    function dropFileHandler(event: DragEvent) {
+        dragging = false;
+        if (event.dataTransfer?.files) {
+            const files = event.dataTransfer.files;
+            console.log(files);
+            if (files.length > 1) return;
+            if (allowImagesFiles.indexOf(files[0].type) < 0) return;
+            uploadImage(files[0]);
+        }
+    }
+
+    function turnOnDragging() {
+        dragging = true;
+    }
+
+    function turnOffDragging() {
+        dragging = false;
     }
 
     onMount(async () => {
@@ -119,13 +150,28 @@
     });
 </script>
 
+<svelte:window on:dragenter|={turnOnDragging} on:dragover={turnOnDragging} on:dragleave|capture={turnOffDragging} />
+
 <nav>
     <h1>Pixel art generator</h1>
 </nav>
 
 <main>
     <article>
-        <canvas bind:this={previewCanvas} class="preview" style="background-image: url({fileUrl});" />
+        <span
+            class="drop-notice"
+            class:drop-here-animated={dragging}
+            on:drop|preventDefault={dropFileHandler}
+            on:dragover|preventDefault>Drop your images here</span
+        >
+        <canvas
+            bind:this={previewCanvas}
+            class="preview"
+            style="background-image: url({fileUrl});"
+            on:drop|preventDefault={dropFileHandler}
+            on:dragover|preventDefault
+            class:drop-here={dragging}
+        />
 
         <label class="file-upload">
             <input type="file" on:change={onFileSelected} accept=".jpeg, .png" />
@@ -229,6 +275,24 @@
         display: grid;
         grid-template-rows: 1fr auto;
         justify-items: center;
+
+        .drop-notice {
+            margin-bottom: 0.5rem;
+            color: #686767;
+            opacity: 0.8;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .drop-here {
+            background: color(--accent-color-2);
+            opacity: 0.8;
+        }
+
+        .drop-here-animated {
+            opacity: 1;
+            animation: drop-here 1.5s infinite ease-in-out forwards;
+        }
 
         .preview {
             position: relative;
@@ -397,6 +461,20 @@
             }
             100% {
                 transform: rotate(360deg);
+            }
+        }
+
+        @keyframes drop-here {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
             }
         }
     }
