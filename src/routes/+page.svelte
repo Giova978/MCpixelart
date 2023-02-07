@@ -100,7 +100,7 @@
         }
 
         console.log([newWidth / image.width, newHeight / image.height]);
-        pixelsToAverage = [Math.ceil((newWidth / image.width) * 16), Math.ceil((newHeight / image.height) * 16)];
+        pixelsToAverage = [Math.ceil((image.width / newWidth) * 16), Math.ceil((image.height / newHeight) * 16)];
         imageSize = [newWidth, newHeight];
     }
 
