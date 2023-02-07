@@ -16,6 +16,7 @@
     let downscaleFactor = 1;
     let sentToWorker = false;
     let image: HTMLImageElement;
+    let imageSize = [0, 0];
 
     // The bigger the smaller and less detailed the output image
     $: averagingSquareWidth = pixelsToAverage[0];
@@ -46,6 +47,8 @@
             previewCanvas.width = image.width / downscaleFactor;
             previewCanvas.height = image.height / downscaleFactor;
 
+            imageSize = [image.width, image.height];
+
             renderAveragingSquare();
         };
     }
@@ -72,6 +75,33 @@
         });
 
         sentToWorker = true;
+    }
+
+    function changeImageSize(event: Event) {
+        if (!event.target) return;
+        const target = event.target as HTMLInputElement & { dataset: { measure: string } };
+        const BLOCK_TEXTURE_SIZE = 16;
+        let newWidth, newHeight;
+        switch (target.dataset.measure) {
+            case "width":
+                // Formula obtained from "Regla de tres simple"
+                newWidth = +target.value * BLOCK_TEXTURE_SIZE;
+                newHeight = (image.height * newWidth) / image.width;
+                break;
+            case "height":
+                // Formula obtained from "Regla de tres simple"
+                newHeight = +target.value * BLOCK_TEXTURE_SIZE;
+                newWidth = (image.width * newHeight) / image.height;
+                break;
+            default:
+                newWidth = 100;
+                newHeight = 100;
+                break;
+        }
+
+        console.log([newWidth / image.width, newHeight / image.height]);
+        pixelsToAverage = [Math.ceil((newWidth / image.width) * 16), Math.ceil((newHeight / image.height) * 16)];
+        imageSize = [newWidth, newHeight];
     }
 
     onMount(async () => {
@@ -102,7 +132,13 @@
             Select file
         </label>
 
-        <label class="averaging-square x" class:disabled={!fileUrl}>
+        <label class="image-size" class:disabled={!fileUrl}>
+            <span>Generated image dimensions</span>
+            <input type="text" data-measure="width" value={Math.ceil(imageSize[0] / 16)} on:change={changeImageSize} />
+            <input type="text" data-measure="height" value={Math.ceil(imageSize[1] / 16)} on:change={changeImageSize} />
+        </label>
+
+        <!-- <label class="averaging-square x" class:disabled={!fileUrl}>
             <span>Averaging square width</span>
             <input type="range" min="4" max="64" on:change={renderAveragingSquare} bind:value={pixelsToAverage[0]} />
             <input type="number" min="4" max="64" on:change={renderAveragingSquare} bind:value={pixelsToAverage[0]} />
@@ -112,7 +148,7 @@
             <span>Averaging square height</span>
             <input type="range" min="4" max="64" on:change={renderAveragingSquare} bind:value={pixelsToAverage[1]} />
             <input type="number" min="4" max="64" on:change={renderAveragingSquare} bind:value={pixelsToAverage[1]} />
-        </label>
+        </label> -->
 
         {#if averagingSquareWidth < 16 || averagingSquareHeight < 16}
             <span class="notice" class:show={averagingSquareWidth < 9 || averagingSquareHeight < 9}>
@@ -211,6 +247,39 @@
 
             &.show {
                 transform: scale(1);
+            }
+        }
+
+        .image-size {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1rem;
+
+            color: color(--text-color);
+            margin-top: 1rem;
+            background: color(--accent-color-2);
+            padding: 0.25rem;
+            border-radius: 5px;
+
+            span {
+                grid-row: 1;
+                grid-column: 1 / 3;
+            }
+
+            input {
+                grid-row: 2;
+                width: 50px;
+                position: relative;
+
+                &:last-of-type {
+                    justify-self: left;
+                }
+
+                &:first-of-type {
+                    justify-self: right;
+                }
             }
         }
 
