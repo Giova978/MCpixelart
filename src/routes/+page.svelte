@@ -58,7 +58,7 @@
 
             imageSize = [image.width, image.height];
 
-            renderAveragingSquare();
+            // renderAveragingSquare();
         };
     }
 
@@ -91,6 +91,7 @@
         const target = event.target as HTMLInputElement & { dataset: { measure: string } };
         const BLOCK_TEXTURE_SIZE = 16;
         let newWidth, newHeight;
+
         switch (target.dataset.measure) {
             case "width":
                 // Formula obtained from "Regla de tres simple"
