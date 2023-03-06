@@ -10,6 +10,7 @@
     let image: HTMLImageElement;
 
     const allowImagesFiles = ["image/png", "image/jpeg"];
+    const BLOCK_TEXTURE_SIZE = 16;
 
     let fileUrl = "";
     let fileName = "No file selected";
@@ -57,6 +58,13 @@
             previewCanvas.height = image.height / downscaleFactor;
 
             imageSize = [image.width, image.height];
+            const newWidth = (image.width / 16) * BLOCK_TEXTURE_SIZE;
+            const newHeight = (image.height * newWidth) / image.width;
+
+            pixelsToAverage = [
+                Math.ceil((image.width / newWidth) * BLOCK_TEXTURE_SIZE),
+                Math.ceil((image.height / newHeight) * BLOCK_TEXTURE_SIZE),
+            ];
 
             // renderAveragingSquare();
         };
@@ -89,7 +97,6 @@
     function changeImageSize(event: Event) {
         if (!event.target) return;
         const target = event.target as HTMLInputElement & { dataset: { measure: string } };
-        const BLOCK_TEXTURE_SIZE = 16;
         let newWidth, newHeight;
 
         switch (target.dataset.measure) {
