@@ -1,7 +1,6 @@
 <script lang="ts">
     import blockPositions from "$lib/data/blockPositions.json";
     import { createEventDispatcher, tick } from "svelte";
-    import {} from "svelte/animate";
     import { clickOutside } from "./clickOutside";
     import {
         AlongAxis,

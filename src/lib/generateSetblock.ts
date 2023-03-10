@@ -68,8 +68,10 @@ export function generateSetblock(blocksMatrix: string[][], axis: AlongAxis, faci
 							break
 						case 'sideup':
 							extraData += `facing=up`
+							break
 						case 'axisy':
 							extraData += `axis=y`
+							break
 						default:
 							console.log(blockId, state)
 					}
