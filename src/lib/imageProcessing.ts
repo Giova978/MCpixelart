@@ -1,7 +1,6 @@
 import { deltaE, rgb2lab } from "./rgb2lab";
-import blocksColor from "$lib/data/avgColorPerBlock.json";
 
-export async function imageToBlocks(image: ImageData, averagingSquareWidth: number, averagingSquareHeight: number) {
+export async function imageToBlocks(image: ImageData, averagingSquareWidth: number, averagingSquareHeight: number, blocksColor: any) {
     const xIterations = Math.ceil(image.width / averagingSquareWidth);
     const yIterations = Math.ceil(image.height / averagingSquareHeight);
 
@@ -24,9 +23,9 @@ export async function imageToBlocks(image: ImageData, averagingSquareWidth: numb
 
         const areasAverageColor = await Promise.all(pixelsInAreasPromises)
         blocks[yOffset] = areasAverageColor.reduce((acc, avgColor) => {
-            let closestColoredBlock = colorAverageToBlockCache.get(avgColor.toString()) ?? findClosestColor(avgColor);
+            let closestColoredBlock = colorAverageToBlockCache.get(avgColor.toString()) ?? findClosestColor(avgColor, blocksColor);
             if (!closestColoredBlock) {
-                closestColoredBlock = findClosestColor(avgColor);
+                closestColoredBlock = findClosestColor(avgColor, blocksColor);
                 colorAverageToBlockCache.set(avgColor.toString(), closestColoredBlock);
             }
 
@@ -85,7 +84,7 @@ function getAverageColor(data: Uint8ClampedArray[]) {
     return [r, g, b];
 }
 
-export function findClosestColor(color: number[]) {
+export function findClosestColor(color: number[], blocksColor: { [key: string]: number[] }) {
     let closestDelta = Number.POSITIVE_INFINITY;
     let closestDeltaColorIndex = 0;
     const blocksColorEntries = Object.entries(blocksColor);

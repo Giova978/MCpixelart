@@ -1,6 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Modal from "$lib/Modal.svelte";
+    import BlockSelector from "$lib/BlockSelector.svelte";
+
+    import blockPositions64 from "$lib/data/blockPositions64.json";
 
     let previewCanvas: HTMLCanvasElement;
     let uploadedImage: HTMLCanvasElement;
@@ -9,9 +12,26 @@
     let worker: Worker;
     let image: HTMLImageElement;
 
+    const textureCategories = [
+        ["log", "planks"],
+        ["concrete_powder"],
+        ["concrete.png"],
+        ["glazed_terracotta", "terracotta"],
+        ["wool"],
+        ["sandstone"],
+        ["ore"],
+        ["trapdoor"],
+        ["dead_", "coral"],
+        ["blackstone"],
+        ["snow"],
+        ["prismarine"],
+        ["basalt"],
+        ["copper_block", "oxidized", "cut_copper"],
+    ];
     const allowImagesFiles = ["image/png", "image/jpeg"];
     const BLOCK_TEXTURE_SIZE = 16;
 
+    let bannedTextures: Map<string, number[]> = new Map();
     let fileUrl = "";
     let fileName = "No file selected";
     let uploadedImageUrl = "";
@@ -89,6 +109,7 @@
             imageData,
             averagingSquareWidth,
             averagingSquareHeight,
+            bannedTextures,
         });
 
         sentToWorker = true;
@@ -141,6 +162,30 @@
 
     function turnOffDragging() {
         dragging = false;
+    }
+
+    function banTexture(event: CustomEvent<string>) {
+        const texture = event.detail;
+        if (bannedTextures.has(texture)) {
+            bannedTextures.delete(texture);
+        } else {
+            bannedTextures.set(texture, [-100, -100, -100]);
+        }
+
+        bannedTextures = bannedTextures;
+    }
+
+    function banAll(event: CustomEvent<{ blocks: [string, number[]][]; checked: boolean }>) {
+        const textures = event.detail.blocks;
+        textures.forEach(([texture]) => {
+            if (bannedTextures.has(texture)) {
+                bannedTextures.delete(texture);
+            } else if (event.detail.checked) {
+                bannedTextures.set(texture, [-100000, -100000, -1000000]);
+            }
+        });
+
+        bannedTextures = bannedTextures;
     }
 
     onMount(async () => {
@@ -223,6 +268,26 @@
     </div>
 
     <img src="images/spritemap.png" hidden alt="Sprite map" bind:this={spriteSheet} />
+    <article class="texture-bans">
+        {#each textureCategories as categories, index (index)}
+            <BlockSelector
+                blockPositions={blockPositions64}
+                filter={categories}
+                {bannedTextures}
+                on:ban={banTexture}
+                on:banAll={banAll}
+            />
+        {/each}
+
+        <BlockSelector
+            blockPositions={blockPositions64}
+            filter={textureCategories.flat()}
+            {bannedTextures}
+            invert={true}
+            on:ban={banTexture}
+            on:banAll={banAll}
+        />
+    </article>
 </main>
 
 <Modal
@@ -277,6 +342,15 @@
             opacity: 0.5;
             border-radius: inherit;
         }
+    }
+
+    article.texture-bans {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 1rem;
+        display: grid;
+        grid-auto-flow: row;
+        gap: 1rem 0;
     }
 
     article {
@@ -355,37 +429,37 @@
             }
         }
 
-        .averaging-square.x,
-        .y {
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            gap: 4px 1rem;
+        // .averaging-square.x,
+        // .y {
+        //     display: grid;
+        //     grid-template-rows: 1fr 1fr;
+        //     gap: 4px 1rem;
 
-            color: color(--text-color);
-            margin-top: 1rem;
-            background: color(--accent-color-2);
-            padding: 0.25rem;
-            border-radius: 5px;
+        //     color: color(--text-color);
+        //     margin-top: 1rem;
+        //     background: color(--accent-color-2);
+        //     padding: 0.25rem;
+        //     border-radius: 5px;
 
-            span {
-                grid-column: 1 / 3;
-                justify-self: center;
-            }
+        //     span {
+        //         grid-column: 1 / 3;
+        //         justify-self: center;
+        //     }
 
-            input[type="range"] {
-                margin: 0;
-                grid-row: 2;
+        //     input[type="range"] {
+        //         margin: 0;
+        //         grid-row: 2;
 
-                &::-moz-progress-bar {
-                    background-color: color(--text-color);
-                }
-            }
+        //         &::-moz-progress-bar {
+        //             background-color: color(--text-color);
+        //         }
+        //     }
 
-            input[type="number"] {
-                grid-row: 2;
-                max-width: 40px;
-            }
-        }
+        //     input[type="number"] {
+        //         grid-row: 2;
+        //         max-width: 40px;
+        //     }
+        // }
 
         .file-upload {
             color: color(--text-color);
