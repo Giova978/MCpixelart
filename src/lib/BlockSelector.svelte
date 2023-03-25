@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { createEventDispatcher, hasContext } from "svelte";
+    import { createEventDispatcher } from "svelte";
 
     export let blockPositions: Record<string, number[]>;
     export let filter: string[];
@@ -104,23 +104,8 @@
         height: 64px;
         background-image: url("images/spritemap64.png");
         cursor: pointer;
-        // grid-row-start: 2;
-        // grid-row-end: auto;
 
         border: var(--border-width) solid color(--accent-color);
-
-        //     &::after {
-        //         --border-size: -32px;
-        //         content: " ";
-        //         border: 1rem solid red;
-        //         position: absolute;
-        //         // width: 64px;
-        //         // height: 64px;
-        //         top: var(--border-size);
-        //         left: var(--border-size);
-        //         bottom: var(--border-size);
-        //         right: var(--border-size);
-        //     }
     }
 
     .grey-border {
