@@ -102,7 +102,7 @@
         display: inline-block;
         width: 64px;
         height: 64px;
-        background-image: url("images/spritemap64.png");
+        background-image: url("/images/spritemap64.png");
         cursor: pointer;
 
         border: var(--border-width) solid color(--accent-color);
