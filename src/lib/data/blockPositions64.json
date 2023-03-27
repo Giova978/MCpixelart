@@ -1,0 +1,1844 @@
+{
+	"acacia_log.png": [
+		0,
+		0,
+		64,
+		64
+	],
+	"acacia_planks.png": [
+		64,
+		0,
+		64,
+		64
+	],
+	"amethyst_block.png": [
+		128,
+		0,
+		64,
+		64
+	],
+	"ancient_debris_side.png": [
+		192,
+		0,
+		64,
+		64
+	],
+	"andesite.png": [
+		256,
+		0,
+		64,
+		64
+	],
+	"anvil.png": [
+		320,
+		0,
+		64,
+		64
+	],
+	"barrel_side.png": [
+		384,
+		0,
+		64,
+		64
+	],
+	"basalt_side.png": [
+		448,
+		0,
+		64,
+		64
+	],
+	"bedrock.png": [
+		512,
+		0,
+		64,
+		64
+	],
+	"bee_nest_front.png": [
+		0,
+		64,
+		64,
+		64
+	],
+	"bee_nest_front_honey.png": [
+		64,
+		64,
+		64,
+		64
+	],
+	"bee_nest_side.png": [
+		128,
+		64,
+		64,
+		64
+	],
+	"beehive_front.png": [
+		192,
+		64,
+		64,
+		64
+	],
+	"beehive_front_honey.png": [
+		256,
+		64,
+		64,
+		64
+	],
+	"beehive_side.png": [
+		320,
+		64,
+		64,
+		64
+	],
+	"birch_log.png": [
+		384,
+		64,
+		64,
+		64
+	],
+	"birch_planks.png": [
+		448,
+		64,
+		64,
+		64
+	],
+	"birch_trapdoor.png": [
+		512,
+		64,
+		64,
+		64
+	],
+	"black_concrete.png": [
+		0,
+		128,
+		64,
+		64
+	],
+	"black_concrete_powder.png": [
+		64,
+		128,
+		64,
+		64
+	],
+	"black_glazed_terracotta.png": [
+		128,
+		128,
+		64,
+		64
+	],
+	"black_terracotta.png": [
+		192,
+		128,
+		64,
+		64
+	],
+	"black_wool.png": [
+		256,
+		128,
+		64,
+		64
+	],
+	"blackstone.png": [
+		320,
+		128,
+		64,
+		64
+	],
+	"blast_furnace_front.png": [
+		384,
+		128,
+		64,
+		64
+	],
+	"blast_furnace_side.png": [
+		448,
+		128,
+		64,
+		64
+	],
+	"blue_concrete.png": [
+		512,
+		128,
+		64,
+		64
+	],
+	"blue_concrete_powder.png": [
+		0,
+		192,
+		64,
+		64
+	],
+	"blue_glazed_terracotta.png": [
+		64,
+		192,
+		64,
+		64
+	],
+	"blue_ice.png": [
+		128,
+		192,
+		64,
+		64
+	],
+	"blue_terracotta.png": [
+		192,
+		192,
+		64,
+		64
+	],
+	"blue_wool.png": [
+		256,
+		192,
+		64,
+		64
+	],
+	"bone_block_side.png": [
+		320,
+		192,
+		64,
+		64
+	],
+	"bookshelf.png": [
+		384,
+		192,
+		64,
+		64
+	],
+	"brain_coral_block.png": [
+		448,
+		192,
+		64,
+		64
+	],
+	"bricks.png": [
+		512,
+		192,
+		64,
+		64
+	],
+	"brown_concrete.png": [
+		0,
+		256,
+		64,
+		64
+	],
+	"brown_concrete_powder.png": [
+		64,
+		256,
+		64,
+		64
+	],
+	"brown_glazed_terracotta.png": [
+		128,
+		256,
+		64,
+		64
+	],
+	"brown_mushroom_block.png": [
+		192,
+		256,
+		64,
+		64
+	],
+	"brown_terracotta.png": [
+		256,
+		256,
+		64,
+		64
+	],
+	"brown_wool.png": [
+		320,
+		256,
+		64,
+		64
+	],
+	"bubble_coral_block.png": [
+		384,
+		256,
+		64,
+		64
+	],
+	"budding_amethyst.png": [
+		448,
+		256,
+		64,
+		64
+	],
+	"calcite.png": [
+		512,
+		256,
+		64,
+		64
+	],
+	"carved_pumpkin.png": [
+		0,
+		320,
+		64,
+		64
+	],
+	"chiseled_deepslate.png": [
+		64,
+		320,
+		64,
+		64
+	],
+	"chiseled_nether_bricks.png": [
+		128,
+		320,
+		64,
+		64
+	],
+	"chiseled_polished_blackstone.png": [
+		192,
+		320,
+		64,
+		64
+	],
+	"chiseled_quartz_block.png": [
+		256,
+		320,
+		64,
+		64
+	],
+	"chiseled_red_sandstone.png": [
+		320,
+		320,
+		64,
+		64
+	],
+	"chiseled_sandstone.png": [
+		384,
+		320,
+		64,
+		64
+	],
+	"chiseled_stone_bricks.png": [
+		448,
+		320,
+		64,
+		64
+	],
+	"clay.png": [
+		512,
+		320,
+		64,
+		64
+	],
+	"coal_block.png": [
+		0,
+		384,
+		64,
+		64
+	],
+	"coal_ore.png": [
+		64,
+		384,
+		64,
+		64
+	],
+	"coarse_dirt.png": [
+		128,
+		384,
+		64,
+		64
+	],
+	"cobbled_deepslate.png": [
+		192,
+		384,
+		64,
+		64
+	],
+	"cobblestone.png": [
+		256,
+		384,
+		64,
+		64
+	],
+	"composter_side.png": [
+		320,
+		384,
+		64,
+		64
+	],
+	"copper_block.png": [
+		384,
+		384,
+		64,
+		64
+	],
+	"copper_ore.png": [
+		448,
+		384,
+		64,
+		64
+	],
+	"cracked_deepslate_bricks.png": [
+		512,
+		384,
+		64,
+		64
+	],
+	"cracked_deepslate_tiles.png": [
+		0,
+		448,
+		64,
+		64
+	],
+	"cracked_nether_bricks.png": [
+		64,
+		448,
+		64,
+		64
+	],
+	"cracked_polished_blackstone_bricks.png": [
+		128,
+		448,
+		64,
+		64
+	],
+	"cracked_stone_bricks.png": [
+		192,
+		448,
+		64,
+		64
+	],
+	"crimson_planks.png": [
+		256,
+		448,
+		64,
+		64
+	],
+	"crimson_stem_0.png": [
+		320,
+		448,
+		64,
+		64
+	],
+	"crying_obsidian.png": [
+		384,
+		448,
+		64,
+		64
+	],
+	"cut_copper.png": [
+		448,
+		448,
+		64,
+		64
+	],
+	"cut_red_sandstone.png": [
+		512,
+		448,
+		64,
+		64
+	],
+	"cut_sandstone.png": [
+		0,
+		512,
+		64,
+		64
+	],
+	"cyan_concrete.png": [
+		64,
+		512,
+		64,
+		64
+	],
+	"cyan_concrete_powder.png": [
+		128,
+		512,
+		64,
+		64
+	],
+	"cyan_glazed_terracotta.png": [
+		192,
+		512,
+		64,
+		64
+	],
+	"cyan_terracotta.png": [
+		256,
+		512,
+		64,
+		64
+	],
+	"cyan_wool.png": [
+		320,
+		512,
+		64,
+		64
+	],
+	"dark_oak_log.png": [
+		384,
+		512,
+		64,
+		64
+	],
+	"dark_oak_planks.png": [
+		448,
+		512,
+		64,
+		64
+	],
+	"dark_oak_trapdoor.png": [
+		512,
+		512,
+		64,
+		64
+	],
+	"dark_prismarine.png": [
+		0,
+		576,
+		64,
+		64
+	],
+	"dead_brain_coral_block.png": [
+		64,
+		576,
+		64,
+		64
+	],
+	"dead_bubble_coral_block.png": [
+		128,
+		576,
+		64,
+		64
+	],
+	"dead_fire_coral_block.png": [
+		192,
+		576,
+		64,
+		64
+	],
+	"dead_horn_coral_block.png": [
+		256,
+		576,
+		64,
+		64
+	],
+	"dead_tube_coral_block.png": [
+		320,
+		576,
+		64,
+		64
+	],
+	"deepslate.png": [
+		384,
+		576,
+		64,
+		64
+	],
+	"deepslate_bricks.png": [
+		448,
+		576,
+		64,
+		64
+	],
+	"deepslate_coal_ore.png": [
+		512,
+		576,
+		64,
+		64
+	],
+	"deepslate_copper_ore.png": [
+		0,
+		640,
+		64,
+		64
+	],
+	"deepslate_diamond_ore.png": [
+		64,
+		640,
+		64,
+		64
+	],
+	"deepslate_emerald_ore.png": [
+		128,
+		640,
+		64,
+		64
+	],
+	"deepslate_gold_ore.png": [
+		192,
+		640,
+		64,
+		64
+	],
+	"deepslate_iron_ore.png": [
+		256,
+		640,
+		64,
+		64
+	],
+	"deepslate_lapis_ore.png": [
+		320,
+		640,
+		64,
+		64
+	],
+	"deepslate_redstone_ore.png": [
+		384,
+		640,
+		64,
+		64
+	],
+	"deepslate_tiles.png": [
+		448,
+		640,
+		64,
+		64
+	],
+	"diamond_block.png": [
+		512,
+		640,
+		64,
+		64
+	],
+	"diamond_ore.png": [
+		0,
+		704,
+		64,
+		64
+	],
+	"diorite.png": [
+		64,
+		704,
+		64,
+		64
+	],
+	"dirt.png": [
+		128,
+		704,
+		64,
+		64
+	],
+	"dispenser_front.png": [
+		192,
+		704,
+		64,
+		64
+	],
+	"dried_kelp_side.png": [
+		256,
+		704,
+		64,
+		64
+	],
+	"dripstone_block.png": [
+		320,
+		704,
+		64,
+		64
+	],
+	"dropper_front.png": [
+		384,
+		704,
+		64,
+		64
+	],
+	"emerald_block.png": [
+		448,
+		704,
+		64,
+		64
+	],
+	"emerald_ore.png": [
+		512,
+		704,
+		64,
+		64
+	],
+	"end_stone.png": [
+		0,
+		768,
+		64,
+		64
+	],
+	"end_stone_bricks.png": [
+		64,
+		768,
+		64,
+		64
+	],
+	"exposed_copper.png": [
+		128,
+		768,
+		64,
+		64
+	],
+	"exposed_cut_copper.png": [
+		192,
+		768,
+		64,
+		64
+	],
+	"fire_coral_block.png": [
+		256,
+		768,
+		64,
+		64
+	],
+	"frosted_ice_0.png": [
+		320,
+		768,
+		64,
+		64
+	],
+	"furnace_front.png": [
+		384,
+		768,
+		64,
+		64
+	],
+	"furnace_side.png": [
+		448,
+		768,
+		64,
+		64
+	],
+	"gilded_blackstone.png": [
+		512,
+		768,
+		64,
+		64
+	],
+	"glowstone.png": [
+		0,
+		832,
+		64,
+		64
+	],
+	"gold_block.png": [
+		64,
+		832,
+		64,
+		64
+	],
+	"gold_ore.png": [
+		128,
+		832,
+		64,
+		64
+	],
+	"granite.png": [
+		192,
+		832,
+		64,
+		64
+	],
+	"gravel.png": [
+		256,
+		832,
+		64,
+		64
+	],
+	"gray_concrete.png": [
+		320,
+		832,
+		64,
+		64
+	],
+	"gray_concrete_powder.png": [
+		384,
+		832,
+		64,
+		64
+	],
+	"gray_glazed_terracotta.png": [
+		448,
+		832,
+		64,
+		64
+	],
+	"gray_terracotta.png": [
+		512,
+		832,
+		64,
+		64
+	],
+	"gray_wool.png": [
+		0,
+		896,
+		64,
+		64
+	],
+	"green_concrete.png": [
+		64,
+		896,
+		64,
+		64
+	],
+	"green_concrete_powder.png": [
+		128,
+		896,
+		64,
+		64
+	],
+	"green_glazed_terracotta.png": [
+		192,
+		896,
+		64,
+		64
+	],
+	"green_terracotta.png": [
+		256,
+		896,
+		64,
+		64
+	],
+	"green_wool.png": [
+		320,
+		896,
+		64,
+		64
+	],
+	"hay_block_side.png": [
+		384,
+		896,
+		64,
+		64
+	],
+	"honey_block_side.png": [
+		448,
+		896,
+		64,
+		64
+	],
+	"honeycomb_block.png": [
+		512,
+		896,
+		64,
+		64
+	],
+	"horn_coral_block.png": [
+		0,
+		960,
+		64,
+		64
+	],
+	"ice.png": [
+		64,
+		960,
+		64,
+		64
+	],
+	"iron_block.png": [
+		128,
+		960,
+		64,
+		64
+	],
+	"iron_ore.png": [
+		192,
+		960,
+		64,
+		64
+	],
+	"jack_o_lantern.png": [
+		256,
+		960,
+		64,
+		64
+	],
+	"jukebox_side.png": [
+		320,
+		960,
+		64,
+		64
+	],
+	"jungle_log.png": [
+		384,
+		960,
+		64,
+		64
+	],
+	"jungle_planks.png": [
+		448,
+		960,
+		64,
+		64
+	],
+	"lapis_block.png": [
+		512,
+		960,
+		64,
+		64
+	],
+	"lapis_ore.png": [
+		0,
+		1024,
+		64,
+		64
+	],
+	"light_blue_concrete.png": [
+		64,
+		1024,
+		64,
+		64
+	],
+	"light_blue_concrete_powder.png": [
+		128,
+		1024,
+		64,
+		64
+	],
+	"light_blue_glazed_terracotta.png": [
+		192,
+		1024,
+		64,
+		64
+	],
+	"light_blue_terracotta.png": [
+		256,
+		1024,
+		64,
+		64
+	],
+	"light_blue_wool.png": [
+		320,
+		1024,
+		64,
+		64
+	],
+	"light_gray_concrete.png": [
+		384,
+		1024,
+		64,
+		64
+	],
+	"light_gray_concrete_powder.png": [
+		448,
+		1024,
+		64,
+		64
+	],
+	"light_gray_glazed_terracotta.png": [
+		512,
+		1024,
+		64,
+		64
+	],
+	"light_gray_terracotta.png": [
+		0,
+		1088,
+		64,
+		64
+	],
+	"light_gray_wool.png": [
+		64,
+		1088,
+		64,
+		64
+	],
+	"lime_concrete.png": [
+		128,
+		1088,
+		64,
+		64
+	],
+	"lime_concrete_powder.png": [
+		192,
+		1088,
+		64,
+		64
+	],
+	"lime_glazed_terracotta.png": [
+		256,
+		1088,
+		64,
+		64
+	],
+	"lime_terracotta.png": [
+		320,
+		1088,
+		64,
+		64
+	],
+	"lime_wool.png": [
+		384,
+		1088,
+		64,
+		64
+	],
+	"lodestone_side.png": [
+		448,
+		1088,
+		64,
+		64
+	],
+	"loom_front.png": [
+		512,
+		1088,
+		64,
+		64
+	],
+	"loom_side.png": [
+		0,
+		1152,
+		64,
+		64
+	],
+	"magenta_concrete.png": [
+		64,
+		1152,
+		64,
+		64
+	],
+	"magenta_concrete_powder.png": [
+		128,
+		1152,
+		64,
+		64
+	],
+	"magenta_glazed_terracotta.png": [
+		192,
+		1152,
+		64,
+		64
+	],
+	"magenta_terracotta.png": [
+		256,
+		1152,
+		64,
+		64
+	],
+	"magenta_wool.png": [
+		320,
+		1152,
+		64,
+		64
+	],
+	"magma_0.png": [
+		384,
+		1152,
+		64,
+		64
+	],
+	"mangrove_log.png": [
+		448,
+		1152,
+		64,
+		64
+	],
+	"mangrove_planks.png": [
+		512,
+		1152,
+		64,
+		64
+	],
+	"melon_side.png": [
+		0,
+		1216,
+		64,
+		64
+	],
+	"moss_block.png": [
+		64,
+		1216,
+		64,
+		64
+	],
+	"mossy_cobblestone.png": [
+		128,
+		1216,
+		64,
+		64
+	],
+	"mossy_stone_bricks.png": [
+		192,
+		1216,
+		64,
+		64
+	],
+	"mud.png": [
+		256,
+		1216,
+		64,
+		64
+	],
+	"mud_bricks.png": [
+		320,
+		1216,
+		64,
+		64
+	],
+	"muddy_mangrove_roots_side.png": [
+		384,
+		1216,
+		64,
+		64
+	],
+	"mushroom_block_inside.png": [
+		448,
+		1216,
+		64,
+		64
+	],
+	"mushroom_stem.png": [
+		512,
+		1216,
+		64,
+		64
+	],
+	"mycelium_side.png": [
+		0,
+		1280,
+		64,
+		64
+	],
+	"nether_bricks.png": [
+		64,
+		1280,
+		64,
+		64
+	],
+	"nether_gold_ore.png": [
+		128,
+		1280,
+		64,
+		64
+	],
+	"nether_quartz_ore.png": [
+		192,
+		1280,
+		64,
+		64
+	],
+	"nether_wart_block.png": [
+		256,
+		1280,
+		64,
+		64
+	],
+	"netherite_block.png": [
+		320,
+		1280,
+		64,
+		64
+	],
+	"netherrack.png": [
+		384,
+		1280,
+		64,
+		64
+	],
+	"note_block.png": [
+		448,
+		1280,
+		64,
+		64
+	],
+	"oak_log.png": [
+		512,
+		1280,
+		64,
+		64
+	],
+	"oak_planks.png": [
+		0,
+		1344,
+		64,
+		64
+	],
+	"observer_back.png": [
+		64,
+		1344,
+		64,
+		64
+	],
+	"observer_back_on.png": [
+		128,
+		1344,
+		64,
+		64
+	],
+	"observer_front.png": [
+		192,
+		1344,
+		64,
+		64
+	],
+	"observer_side.png": [
+		256,
+		1344,
+		64,
+		64
+	],
+	"obsidian.png": [
+		320,
+		1344,
+		64,
+		64
+	],
+	"ochre_froglight_side.png": [
+		384,
+		1344,
+		64,
+		64
+	],
+	"orange_concrete.png": [
+		448,
+		1344,
+		64,
+		64
+	],
+	"orange_concrete_powder.png": [
+		512,
+		1344,
+		64,
+		64
+	],
+	"orange_glazed_terracotta.png": [
+		0,
+		1408,
+		64,
+		64
+	],
+	"orange_terracotta.png": [
+		64,
+		1408,
+		64,
+		64
+	],
+	"orange_wool.png": [
+		128,
+		1408,
+		64,
+		64
+	],
+	"oxidized_copper.png": [
+		192,
+		1408,
+		64,
+		64
+	],
+	"oxidized_cut_copper.png": [
+		256,
+		1408,
+		64,
+		64
+	],
+	"packed_ice.png": [
+		320,
+		1408,
+		64,
+		64
+	],
+	"packed_mud.png": [
+		384,
+		1408,
+		64,
+		64
+	],
+	"pearlescent_froglight_side.png": [
+		448,
+		1408,
+		64,
+		64
+	],
+	"pink_concrete.png": [
+		512,
+		1408,
+		64,
+		64
+	],
+	"pink_concrete_powder.png": [
+		0,
+		1472,
+		64,
+		64
+	],
+	"pink_glazed_terracotta.png": [
+		64,
+		1472,
+		64,
+		64
+	],
+	"pink_terracotta.png": [
+		128,
+		1472,
+		64,
+		64
+	],
+	"pink_wool.png": [
+		192,
+		1472,
+		64,
+		64
+	],
+	"piston_side.png": [
+		256,
+		1472,
+		64,
+		64
+	],
+	"polished_andesite.png": [
+		320,
+		1472,
+		64,
+		64
+	],
+	"polished_basalt_side.png": [
+		384,
+		1472,
+		64,
+		64
+	],
+	"polished_blackstone.png": [
+		448,
+		1472,
+		64,
+		64
+	],
+	"polished_blackstone_bricks.png": [
+		512,
+		1472,
+		64,
+		64
+	],
+	"polished_deepslate.png": [
+		0,
+		1536,
+		64,
+		64
+	],
+	"polished_diorite.png": [
+		64,
+		1536,
+		64,
+		64
+	],
+	"polished_granite.png": [
+		128,
+		1536,
+		64,
+		64
+	],
+	"powder_snow.png": [
+		192,
+		1536,
+		64,
+		64
+	],
+	"prismarine_0.png": [
+		256,
+		1536,
+		64,
+		64
+	],
+	"prismarine_bricks.png": [
+		320,
+		1536,
+		64,
+		64
+	],
+	"pumpkin_side.png": [
+		384,
+		1536,
+		64,
+		64
+	],
+	"purple_concrete.png": [
+		448,
+		1536,
+		64,
+		64
+	],
+	"purple_concrete_powder.png": [
+		512,
+		1536,
+		64,
+		64
+	],
+	"purple_glazed_terracotta.png": [
+		0,
+		1600,
+		64,
+		64
+	],
+	"purple_terracotta.png": [
+		64,
+		1600,
+		64,
+		64
+	],
+	"purple_wool.png": [
+		128,
+		1600,
+		64,
+		64
+	],
+	"purpur_block.png": [
+		192,
+		1600,
+		64,
+		64
+	],
+	"purpur_pillar.png": [
+		256,
+		1600,
+		64,
+		64
+	],
+	"quartz_block_side.png": [
+		320,
+		1600,
+		64,
+		64
+	],
+	"quartz_bricks.png": [
+		384,
+		1600,
+		64,
+		64
+	],
+	"quartz_pillar.png": [
+		448,
+		1600,
+		64,
+		64
+	],
+	"raw_copper_block.png": [
+		512,
+		1600,
+		64,
+		64
+	],
+	"raw_gold_block.png": [
+		0,
+		1664,
+		64,
+		64
+	],
+	"raw_iron_block.png": [
+		64,
+		1664,
+		64,
+		64
+	],
+	"red_concrete.png": [
+		128,
+		1664,
+		64,
+		64
+	],
+	"red_concrete_powder.png": [
+		192,
+		1664,
+		64,
+		64
+	],
+	"red_glazed_terracotta.png": [
+		256,
+		1664,
+		64,
+		64
+	],
+	"red_mushroom_block.png": [
+		320,
+		1664,
+		64,
+		64
+	],
+	"red_nether_bricks.png": [
+		384,
+		1664,
+		64,
+		64
+	],
+	"red_sand.png": [
+		448,
+		1664,
+		64,
+		64
+	],
+	"red_sandstone.png": [
+		512,
+		1664,
+		64,
+		64
+	],
+	"red_terracotta.png": [
+		0,
+		1728,
+		64,
+		64
+	],
+	"red_wool.png": [
+		64,
+		1728,
+		64,
+		64
+	],
+	"redstone_block.png": [
+		128,
+		1728,
+		64,
+		64
+	],
+	"redstone_lamp.png": [
+		192,
+		1728,
+		64,
+		64
+	],
+	"redstone_lamp_on.png": [
+		256,
+		1728,
+		64,
+		64
+	],
+	"redstone_ore.png": [
+		320,
+		1728,
+		64,
+		64
+	],
+	"reinforced_deepslate_side.png": [
+		384,
+		1728,
+		64,
+		64
+	],
+	"respawn_anchor_side0.png": [
+		448,
+		1728,
+		64,
+		64
+	],
+	"respawn_anchor_side1.png": [
+		512,
+		1728,
+		64,
+		64
+	],
+	"respawn_anchor_side2.png": [
+		0,
+		1792,
+		64,
+		64
+	],
+	"respawn_anchor_side3.png": [
+		64,
+		1792,
+		64,
+		64
+	],
+	"respawn_anchor_side4.png": [
+		128,
+		1792,
+		64,
+		64
+	],
+	"rooted_dirt.png": [
+		192,
+		1792,
+		64,
+		64
+	],
+	"sand.png": [
+		256,
+		1792,
+		64,
+		64
+	],
+	"sandstone.png": [
+		320,
+		1792,
+		64,
+		64
+	],
+	"sculk_0.png": [
+		384,
+		1792,
+		64,
+		64
+	],
+	"sculk_catalyst_side.png": [
+		448,
+		1792,
+		64,
+		64
+	],
+	"sea_lantern_0.png": [
+		512,
+		1792,
+		64,
+		64
+	],
+	"shroomlight.png": [
+		0,
+		1856,
+		64,
+		64
+	],
+	"slime_block.png": [
+		64,
+		1856,
+		64,
+		64
+	],
+	"smoker_front.png": [
+		128,
+		1856,
+		64,
+		64
+	],
+	"smoker_side.png": [
+		192,
+		1856,
+		64,
+		64
+	],
+	"smooth_basalt.png": [
+		256,
+		1856,
+		64,
+		64
+	],
+	"smooth_stone.png": [
+		320,
+		1856,
+		64,
+		64
+	],
+	"snow.png": [
+		384,
+		1856,
+		64,
+		64
+	],
+	"soul_sand.png": [
+		448,
+		1856,
+		64,
+		64
+	],
+	"soul_soil.png": [
+		512,
+		1856,
+		64,
+		64
+	],
+	"sponge.png": [
+		0,
+		1920,
+		64,
+		64
+	],
+	"spruce_log.png": [
+		64,
+		1920,
+		64,
+		64
+	],
+	"spruce_planks.png": [
+		128,
+		1920,
+		64,
+		64
+	],
+	"spruce_trapdoor.png": [
+		192,
+		1920,
+		64,
+		64
+	],
+	"stone.png": [
+		256,
+		1920,
+		64,
+		64
+	],
+	"stone_bricks.png": [
+		320,
+		1920,
+		64,
+		64
+	],
+	"stripped_acacia_log.png": [
+		384,
+		1920,
+		64,
+		64
+	],
+	"stripped_birch_log.png": [
+		448,
+		1920,
+		64,
+		64
+	],
+	"stripped_crimson_stem.png": [
+		512,
+		1920,
+		64,
+		64
+	],
+	"stripped_dark_oak_log.png": [
+		0,
+		1984,
+		64,
+		64
+	],
+	"stripped_jungle_log.png": [
+		64,
+		1984,
+		64,
+		64
+	],
+	"stripped_mangrove_log.png": [
+		128,
+		1984,
+		64,
+		64
+	],
+	"stripped_oak_log.png": [
+		192,
+		1984,
+		64,
+		64
+	],
+	"stripped_spruce_log.png": [
+		256,
+		1984,
+		64,
+		64
+	],
+	"stripped_warped_stem.png": [
+		320,
+		1984,
+		64,
+		64
+	],
+	"target_side.png": [
+		384,
+		1984,
+		64,
+		64
+	],
+	"terracotta.png": [
+		448,
+		1984,
+		64,
+		64
+	],
+	"tnt_side.png": [
+		512,
+		1984,
+		64,
+		64
+	],
+	"tube_coral_block.png": [
+		0,
+		2048,
+		64,
+		64
+	],
+	"tuff.png": [
+		64,
+		2048,
+		64,
+		64
+	],
+	"verdant_froglight_side.png": [
+		128,
+		2048,
+		64,
+		64
+	],
+	"warped_planks.png": [
+		192,
+		2048,
+		64,
+		64
+	],
+	"warped_stem_0.png": [
+		256,
+		2048,
+		64,
+		64
+	],
+	"warped_wart_block.png": [
+		320,
+		2048,
+		64,
+		64
+	],
+	"weathered_copper.png": [
+		384,
+		2048,
+		64,
+		64
+	],
+	"weathered_cut_copper.png": [
+		448,
+		2048,
+		64,
+		64
+	],
+	"wet_sponge.png": [
+		512,
+		2048,
+		64,
+		64
+	],
+	"white_concrete.png": [
+		0,
+		2112,
+		64,
+		64
+	],
+	"white_concrete_powder.png": [
+		64,
+		2112,
+		64,
+		64
+	],
+	"white_glazed_terracotta.png": [
+		128,
+		2112,
+		64,
+		64
+	],
+	"white_terracotta.png": [
+		192,
+		2112,
+		64,
+		64
+	],
+	"white_wool.png": [
+		256,
+		2112,
+		64,
+		64
+	],
+	"yellow_concrete.png": [
+		320,
+		2112,
+		64,
+		64
+	],
+	"yellow_concrete_powder.png": [
+		384,
+		2112,
+		64,
+		64
+	],
+	"yellow_glazed_terracotta.png": [
+		448,
+		2112,
+		64,
+		64
+	],
+	"yellow_terracotta.png": [
+		512,
+		2112,
+		64,
+		64
+	],
+	"yellow_wool.png": [
+		0,
+		2176,
+		64,
+		64
+	]
+}

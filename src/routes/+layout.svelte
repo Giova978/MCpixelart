@@ -11,8 +11,7 @@
     footer {
         box-sizing: border-box;
         width: 100%;
-        position: relative;
-        bottom: 0;
+        position: absolute;
         margin-top: 1rem;
         padding-bottom: 1rem;
         padding-left: 1rem;

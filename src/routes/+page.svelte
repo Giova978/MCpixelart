@@ -1,13 +1,37 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Modal from "$lib/Modal.svelte";
+    import BlockSelector from "$lib/BlockSelector.svelte";
+
+    import blockPositions64 from "$lib/data/blockPositions64.json";
 
     let previewCanvas: HTMLCanvasElement;
     let uploadedImage: HTMLCanvasElement;
     let spriteSheet: HTMLImageElement;
     let ctx: CanvasRenderingContext2D;
     let worker: Worker;
+    let image: HTMLImageElement;
 
+    const textureCategories = [
+        ["log", "planks"],
+        ["concrete_powder"],
+        ["concrete.png"],
+        ["glazed_terracotta", "terracotta"],
+        ["wool"],
+        ["sandstone"],
+        ["ore"],
+        ["trapdoor"],
+        ["dead_", "coral"],
+        ["blackstone"],
+        ["snow"],
+        ["prismarine"],
+        ["basalt"],
+        ["copper_block", "oxidized", "cut_copper"],
+    ];
+    const allowImagesFiles = ["image/png", "image/jpeg"];
+    const BLOCK_TEXTURE_SIZE = 16;
+
+    let bannedTextures: Map<string, number[]> = new Map();
     let fileUrl = "";
     let fileName = "No file selected";
     let uploadedImageUrl = "";
@@ -15,8 +39,8 @@
     let pixelsToAverage: number[] = [16, 16];
     let downscaleFactor = 1;
     let sentToWorker = false;
-    let image: HTMLImageElement;
     let imageSize = [0, 0];
+    let dragging = false;
 
     // The bigger the smaller and less detailed the output image
     $: averagingSquareWidth = pixelsToAverage[0];
@@ -30,8 +54,14 @@
         const target = event.target as HTMLInputElement;
 
         if (!target.files) return;
+        if (target.files.length > 1) return;
+        if (allowImagesFiles.indexOf(target.files[0].type) < 0) return;
 
         const file = target.files[0];
+        uploadImage(file);
+    }
+
+    function uploadImage(file: File) {
         fileUrl = URL.createObjectURL(file);
         fileName = file.name;
         uploadedImageUrl = fileUrl;
@@ -48,8 +78,15 @@
             previewCanvas.height = image.height / downscaleFactor;
 
             imageSize = [image.width, image.height];
+            const newWidth = (image.width / 16) * BLOCK_TEXTURE_SIZE;
+            const newHeight = (image.height * newWidth) / image.width;
 
-            renderAveragingSquare();
+            pixelsToAverage = [
+                Math.ceil((image.width / newWidth) * BLOCK_TEXTURE_SIZE),
+                Math.ceil((image.height / newHeight) * BLOCK_TEXTURE_SIZE),
+            ];
+
+            // renderAveragingSquare();
         };
     }
 
@@ -72,6 +109,7 @@
             imageData,
             averagingSquareWidth,
             averagingSquareHeight,
+            bannedTextures,
         });
 
         sentToWorker = true;
@@ -80,8 +118,8 @@
     function changeImageSize(event: Event) {
         if (!event.target) return;
         const target = event.target as HTMLInputElement & { dataset: { measure: string } };
-        const BLOCK_TEXTURE_SIZE = 16;
         let newWidth, newHeight;
+
         switch (target.dataset.measure) {
             case "width":
                 // Formula obtained from "Regla de tres simple"
@@ -99,9 +137,55 @@
                 break;
         }
 
-        console.log([newWidth / image.width, newHeight / image.height]);
-        pixelsToAverage = [Math.ceil((image.width / newWidth) * 16), Math.ceil((image.height / newHeight) * 16)];
+        pixelsToAverage = [
+            Math.ceil((image.width / newWidth) * BLOCK_TEXTURE_SIZE),
+            Math.ceil((image.height / newHeight) * BLOCK_TEXTURE_SIZE),
+        ];
+
         imageSize = [newWidth, newHeight];
+    }
+
+    function dropFileHandler(event: DragEvent) {
+        dragging = false;
+        if (event.dataTransfer?.files) {
+            const files = event.dataTransfer.files;
+            console.log(files);
+            if (files.length > 1) return;
+            if (allowImagesFiles.indexOf(files[0].type) < 0) return;
+            uploadImage(files[0]);
+        }
+    }
+
+    function turnOnDragging() {
+        dragging = true;
+    }
+
+    function turnOffDragging() {
+        dragging = false;
+    }
+
+    function banTexture(event: CustomEvent<string>) {
+        const texture = event.detail;
+        if (bannedTextures.has(texture)) {
+            bannedTextures.delete(texture);
+        } else {
+            bannedTextures.set(texture, [-100, -100, -100]);
+        }
+
+        bannedTextures = bannedTextures;
+    }
+
+    function banAll(event: CustomEvent<{ blocks: [string, number[]][]; checked: boolean }>) {
+        const textures = event.detail.blocks;
+        textures.forEach(([texture]) => {
+            if (bannedTextures.has(texture)) {
+                bannedTextures.delete(texture);
+            } else if (event.detail.checked) {
+                bannedTextures.set(texture, [-100000, -100000, -1000000]);
+            }
+        });
+
+        bannedTextures = bannedTextures;
     }
 
     onMount(async () => {
@@ -119,13 +203,28 @@
     });
 </script>
 
+<svelte:window on:dragenter|={turnOnDragging} on:dragover={turnOnDragging} on:dragleave|capture={turnOffDragging} />
+
 <nav>
     <h1>Pixel art generator</h1>
 </nav>
 
 <main>
     <article>
-        <canvas bind:this={previewCanvas} class="preview" style="background-image: url({fileUrl});" />
+        <span
+            class="drop-notice"
+            class:drop-here-animated={dragging}
+            on:drop|preventDefault={dropFileHandler}
+            on:dragover|preventDefault>Drop your images here</span
+        >
+        <canvas
+            bind:this={previewCanvas}
+            class="preview"
+            style="background-image: url({fileUrl});"
+            on:drop|preventDefault={dropFileHandler}
+            on:dragover|preventDefault
+            class:drop-here={dragging}
+        />
 
         <label class="file-upload">
             <input type="file" on:change={onFileSelected} accept=".jpeg, .png" />
@@ -169,6 +268,26 @@
     </div>
 
     <img src="images/spritemap.png" hidden alt="Sprite map" bind:this={spriteSheet} />
+    <article class="texture-bans">
+        {#each textureCategories as categories, index (index)}
+            <BlockSelector
+                blockPositions={blockPositions64}
+                filter={categories}
+                {bannedTextures}
+                on:ban={banTexture}
+                on:banAll={banAll}
+            />
+        {/each}
+
+        <BlockSelector
+            blockPositions={blockPositions64}
+            filter={textureCategories.flat()}
+            {bannedTextures}
+            invert={true}
+            on:ban={banTexture}
+            on:banAll={banAll}
+        />
+    </article>
 </main>
 
 <Modal
@@ -225,10 +344,37 @@
         }
     }
 
+    article.texture-bans {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 1rem;
+        display: grid;
+        grid-auto-flow: row;
+        gap: 1rem 0;
+    }
+
     article {
         display: grid;
         grid-template-rows: 1fr auto;
         justify-items: center;
+
+        .drop-notice {
+            margin-bottom: 0.5rem;
+            color: #686767;
+            opacity: 0.8;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .drop-here {
+            background: color(--accent-color-2);
+            opacity: 0.8;
+        }
+
+        .drop-here-animated {
+            opacity: 1;
+            animation: drop-here 1.5s infinite ease-in-out forwards;
+        }
 
         .preview {
             position: relative;
@@ -283,37 +429,37 @@
             }
         }
 
-        .averaging-square.x,
-        .y {
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            gap: 4px 1rem;
+        // .averaging-square.x,
+        // .y {
+        //     display: grid;
+        //     grid-template-rows: 1fr 1fr;
+        //     gap: 4px 1rem;
 
-            color: color(--text-color);
-            margin-top: 1rem;
-            background: color(--accent-color-2);
-            padding: 0.25rem;
-            border-radius: 5px;
+        //     color: color(--text-color);
+        //     margin-top: 1rem;
+        //     background: color(--accent-color-2);
+        //     padding: 0.25rem;
+        //     border-radius: 5px;
 
-            span {
-                grid-column: 1 / 3;
-                justify-self: center;
-            }
+        //     span {
+        //         grid-column: 1 / 3;
+        //         justify-self: center;
+        //     }
 
-            input[type="range"] {
-                margin: 0;
-                grid-row: 2;
+        //     input[type="range"] {
+        //         margin: 0;
+        //         grid-row: 2;
 
-                &::-moz-progress-bar {
-                    background-color: color(--text-color);
-                }
-            }
+        //         &::-moz-progress-bar {
+        //             background-color: color(--text-color);
+        //         }
+        //     }
 
-            input[type="number"] {
-                grid-row: 2;
-                max-width: 40px;
-            }
-        }
+        //     input[type="number"] {
+        //         grid-row: 2;
+        //         max-width: 40px;
+        //     }
+        // }
 
         .file-upload {
             color: color(--text-color);
@@ -397,6 +543,20 @@
             }
             100% {
                 transform: rotate(360deg);
+            }
+        }
+
+        @keyframes drop-here {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
             }
         }
     }
