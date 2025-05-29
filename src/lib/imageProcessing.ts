@@ -23,7 +23,7 @@ export async function imageToBlocks(image: ImageData, averagingSquareWidth: numb
 
         const areasAverageColor = await Promise.all(pixelsInAreasPromises)
         blocks[yOffset] = areasAverageColor.reduce((acc, avgColor) => {
-            let closestColoredBlock = colorAverageToBlockCache.get(avgColor.toString()) ?? findClosestColor(avgColor, blocksColor);
+            let closestColoredBlock = colorAverageToBlockCache.get(avgColor.toString())
             if (!closestColoredBlock) {
                 closestColoredBlock = findClosestColor(avgColor, blocksColor);
                 colorAverageToBlockCache.set(avgColor.toString(), closestColoredBlock);
